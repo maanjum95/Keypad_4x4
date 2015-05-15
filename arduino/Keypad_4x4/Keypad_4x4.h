@@ -105,6 +105,15 @@ public:
 	*	In case of no input the keypad -1 is returned.
 	*/
 	char readInput(void);
+
+
+	/**
+	*	Waits for input from the keypad for at most ms milliseconds
+	*	After the specified time if no key input is detected -1 is returned.
+	*	When a key is pressed the character is returned even if time has not completed
+	*	If ms = 0 then it returns infinetely till a key is pressed.
+	*/
+	char waitFromInput(int ms=0);
 };
 
 #endif

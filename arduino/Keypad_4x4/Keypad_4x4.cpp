@@ -69,6 +69,21 @@ char Keypad_4x4::readInput(void) {
 	return -1;
 }
 
+char Keypad_4x4::waitFromInput(int ms) {
+	char toReturn = -1;
+	int startTime = millis();
+
+	do {
+		toReturn = this->readInput();
+
+		if (toReturn != -1)
+			return toReturn;
+	
+	} while((!ms) || millis() - startTime <= ms);
+
+	return toReturn;
+}
+
 char Keypad_4x4::returnButtonOutput(int mxn) {
 	switch (mxn) {
 		case 84:
