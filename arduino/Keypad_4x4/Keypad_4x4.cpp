@@ -35,41 +35,45 @@ Keypad_4x4::Keypad_4x4(byte *pins) {
 	pinMode(this->pins[2], OUTPUT);
 	pinMode(this->pins[3], OUTPUT);
 
-	// initializing the output to be LOW 0
-	digitalWrite(this->pins[0], 0);
-	digitalWrite(this->pins[1], 0);
-	digitalWrite(this->pins[2], 0);
-	digitalWrite(this->pins[3], 0);
+	// initializing the output to be HIGH 1
+	digitalWrite(this->pins[0], HIGH);
+	digitalWrite(this->pins[1], HIGH);
+	digitalWrite(this->pins[2], HIGH);
+	digitalWrite(this->pins[3], HIGH);
 
 	// pins 4-7 should be the input and will determine the output of the keypad
 	pinMode(this->pins[4], INPUT);
 	pinMode(this->pins[5], INPUT);
 	pinMode(this->pins[6], INPUT);
 	pinMode(this->pins[7], INPUT);
+
+	digitalWrite(this->pins[4], HIGH);
+	digitalWrite(this->pins[5], HIGH);
+	digitalWrite(this->pins[6], HIGH);
+	digitalWrite(this->pins[7], HIGH);
 }
 
 char Keypad_4x4::readInput(void) {
 	// we loop over the output port 0-3 and set them to HIGH 1 one-by-one
 	for (int i = 0; i < 4; i++) {
-		//digitalWrite(this->pins[i], 1);
-		digitalWrite(this->pins[i], 1);
+		digitalWrite(this->pins[i], LOW);
 		
 		// now we check which input pin is high from pins 4-7
 		for (int j = 4; j < 8; j++) {
 			// if the current pin is high then the corresponding button is on
-			if (digitalRead(this->pins[j])) {
-				digitalWrite(this->pins[i], 0); // output should be cleared after each loop
+			if (!digitalRead(this->pins[j])) {
+				digitalWrite(this->pins[i], HIGH); // output should be cleared after each loop
 				return returnButtonOutput((j + 1) * 10 + (i + 1));
 			}
 		}
-		digitalWrite(this->pins[i], 0); // output should be cleared after each loop
+		digitalWrite(this->pins[i], HIGH); // output should be cleared after each loop
 	}
 
 	// if no button is pressed we return -1.
 	return -1;
 }
 
-char Keypad_4x4::waitFromInput(int ms) {
+char Keypad_4x4::waitForInput(int ms) {
 	char toReturn = -1;
 	int startTime = millis();
 
@@ -81,6 +85,35 @@ char Keypad_4x4::waitFromInput(int ms) {
 	
 	} while((!ms) || millis() - startTime <= ms);
 
+	return toReturn;
+}
+
+char Keypad_4x4::readSingleInput(void) {
+	char toReturn = this->readInput();
+
+	// if there is no input we return
+	if (toReturn == -1)
+		return -1;
+
+	// else we wait till there is an input change ie key is released
+	while(this->readInput() == toReturn)
+		;
+
+	return toReturn;
+}
+
+char Keypad_4x4::waitAndReadSingleInput(int ms) {
+	char toReturn = -1;
+	int startTime = millis();
+
+	do {
+		toReturn = this->readSingleInput();
+
+		if (toReturn != -1)
+			return toReturn;
+
+	} while((!ms) || millis() - startTime <= ms);
+	
 	return toReturn;
 }
 

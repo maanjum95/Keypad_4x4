@@ -40,9 +40,9 @@ void setup() {
 }
 
 void loop() {
-   ch = keypad->readInput(); // reading the input from the keypad
-   
-   // if there is some output from the keypad we print it to Serial
-   if (ch != -1)
-     Serial.println(ch);
+  ch = keypad->readInput(); // reading the input from the keypad
+
+  // if there is some output from the keypad we print it to Serial
+  if (ch != -1)
+    Serial.println(ch);
  }

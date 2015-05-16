@@ -47,8 +47,7 @@
 *		and the values of the rest of the pins (5-8) are checked.
 *	3- Depending upon the state of the pins (5-8) we can check which button is pressed.
 *	
-*	** IMP ** The input ports (5-8) need to be pulled down with 1k for proper execution. As it did not work for me without pull down,
-*	even though it is not necessary for ouput ports (1-4) to be pulled down.
+*	** IMP ** The input ports (5-8) need to be pulled up with 1k for proper execution.
 */
 
 #ifndef KEYPAD_4X4
@@ -113,7 +112,22 @@ public:
 	*	When a key is pressed the character is returned even if time has not completed
 	*	If ms = 0 then it returns infinetely till a key is pressed.
 	*/
-	char waitFromInput(int ms=0);
+	char waitForInput(int ms=0);
+
+	/**
+	*	Reads a single input from the keypad and waits till the key is released.
+	*	It prevents the same input from being read repreatly.
+	*	This method does not wait for input but if the key pressed is not released the method does not return.
+	*/
+	char readSingleInput(void);
+
+	/**
+	*	It does the same as readSingleInput but also waits a certains specified time
+	*	It is a combination of waitForInput and readSingleInput.
+	*	If ms = 0 then it returns infinetely till a key is pressed.
+	*	If a key is pressed it is not returned untill the key is released.
+	*/
+	char waitAndReadSingleInput(int ms=0);
 };
 
 #endif
