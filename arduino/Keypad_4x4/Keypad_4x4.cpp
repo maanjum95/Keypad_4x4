@@ -63,7 +63,7 @@ char Keypad_4x4::readInput(void) {
 			// if the current pin is high then the corresponding button is on
 			if (!digitalRead(this->pins[j])) {
 				digitalWrite(this->pins[i], HIGH); // output should be cleared after each loop
-				return returnButtonOutput((j + 1) * 10 + (i + 1));
+				return returnButtonOutput((7 - j) * 10 + (3 - i));
 			}
 		}
 		digitalWrite(this->pins[i], HIGH); // output should be cleared after each loop
@@ -119,38 +119,38 @@ char Keypad_4x4::waitAndReadSingleInput(int ms) {
 
 char Keypad_4x4::returnButtonOutput(int mxn) {
 	switch (mxn) {
-		case 84:
-			return BUTTON_OUTPUT_84;
-		case 83:
-			return BUTTON_OUTPUT_83;
-		case 82:
-			return BUTTON_OUTPUT_82;
-		case 81:
-			return BUTTON_OUTPUT_81;
-		case 74:
-			return BUTTON_OUTPUT_74;
-		case 73:
-			return BUTTON_OUTPUT_73;
-		case 72:
-			return BUTTON_OUTPUT_72;
-		case 71:
-			return BUTTON_OUTPUT_71;
-		case 64:
-			return BUTTON_OUTPUT_64;
-		case 63:
-			return BUTTON_OUTPUT_63;
-		case 62:
-			return BUTTON_OUTPUT_62;
-		case 61:
-			return BUTTON_OUTPUT_61;
-		case 54:
-			return BUTTON_OUTPUT_54;
-		case 53:
-			return BUTTON_OUTPUT_53;
-		case 52:
-			return BUTTON_OUTPUT_52;
-		case 51:
-			return BUTTON_OUTPUT_51;
+		case 00:
+			return BUTTON_OUTPUT_00;
+		case 01:
+			return BUTTON_OUTPUT_01;
+		case 02:
+			return BUTTON_OUTPUT_02;
+		case 03:
+			return BUTTON_OUTPUT_03;
+		case 10:
+			return BUTTON_OUTPUT_10;
+		case 11:
+			return BUTTON_OUTPUT_11;
+		case 12:
+			return BUTTON_OUTPUT_12;
+		case 13:
+			return BUTTON_OUTPUT_13;
+		case 20:
+			return BUTTON_OUTPUT_20;
+		case 21:
+			return BUTTON_OUTPUT_21;
+		case 22:
+			return BUTTON_OUTPUT_22;
+		case 23:
+			return BUTTON_OUTPUT_23;
+		case 30:
+			return BUTTON_OUTPUT_30;
+		case 31:
+			return BUTTON_OUTPUT_31;
+		case 32:
+			return BUTTON_OUTPUT_32;
+		case 33:
+			return BUTTON_OUTPUT_33;
 		default:
 			return -1;
 	}

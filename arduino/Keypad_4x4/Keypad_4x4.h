@@ -24,15 +24,15 @@
 ********************************************************************************************************/
 /**
 *	4x4 Matrix Membrane Keypad (#27899)
-*						  Pins
+*		  0	  1   2   3	  Pins
 *		+---+---+---+---+
-*		| 1 | 2 | 3 | A |  8
+*	 0	| 1 | 2 | 3 | A |  8
 *		+---+---+---+---+
-*		| 4 | 5 | 6 | B |  7
+*	 1	| 4 | 5 | 6 | B |  7
 *		+---+---+---+---+
-*		| 7 | 8 | 9 | C |  6
+*	 2	| 7 | 8 | 9 | C |  6
 *		+---+---+---+---+
-*		| * | 0 | # | D |  5
+*	 3	| * | 0 | # | D |  5
 *		+---+---+---+---+	
 *	Pins: 4   3   2   1
 *
@@ -60,25 +60,26 @@
 // The ASCII output of each button as written on the keypad
 // The last number is mn as defined in matrix as mxn ie 84 = 8x4
 // These number dont necessarily represent the row or column number but the pin corresponding to each row or column
-#define BUTTON_OUTPUT_84 '1'
-#define BUTTON_OUTPUT_83 '2'
-#define BUTTON_OUTPUT_82 '3'
-#define BUTTON_OUTPUT_81 'A'
+#define BUTTON_OUTPUT_00 '1'
+#define BUTTON_OUTPUT_01 '2'
+#define BUTTON_OUTPUT_02 '3'
+#define BUTTON_OUTPUT_03 'A'
 
-#define BUTTON_OUTPUT_74 '4'
-#define BUTTON_OUTPUT_73 '5'
-#define BUTTON_OUTPUT_72 '6'
-#define BUTTON_OUTPUT_71 'B'
+#define BUTTON_OUTPUT_10 '4'
+#define BUTTON_OUTPUT_11 '5'
+#define BUTTON_OUTPUT_12 '6'
+#define BUTTON_OUTPUT_13 'B'
 
-#define BUTTON_OUTPUT_64 '7'
-#define BUTTON_OUTPUT_63 '8'
-#define BUTTON_OUTPUT_62 '9'
-#define BUTTON_OUTPUT_61 'C'
+#define BUTTON_OUTPUT_20 '7'
+#define BUTTON_OUTPUT_21 '8'
+#define BUTTON_OUTPUT_22 '9'
+#define BUTTON_OUTPUT_23 'C'
 
-#define BUTTON_OUTPUT_54 '*'
-#define BUTTON_OUTPUT_53 '0'
-#define BUTTON_OUTPUT_52 '#'
-#define BUTTON_OUTPUT_51 'D'
+#define BUTTON_OUTPUT_30 '*'
+#define BUTTON_OUTPUT_31 '0'
+#define BUTTON_OUTPUT_32 '#'
+#define BUTTON_OUTPUT_33 'D'
+
 
 class Keypad_4x4 {
 private:
